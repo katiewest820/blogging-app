@@ -1,5 +1,7 @@
 console.log('I\'m working!!!!')
 
+let apiData;
+
 function getItems() {
 
     $('.blogSearch').on('click', function(event) {
@@ -19,11 +21,41 @@ function getItems() {
             })
             .done((items) => {
                 console.log(items)
-                for (let i = 0; i < items.length; i++) {
-                    $('.blogItem').append(`<div>${items[i].author}: <h2>${items[i].title}</h2><p>${items[i].content}</p>
-                                        <button class='delete' value='${items[i].created}'>Delete</button></div>`)
+                apiData = items
+                for (let i = 0; i < apiData.length; i++) {
+                    $('.blogItem').append(`<div>${apiData[i].author}: <h2>${apiData[i].title}</h2><p>${apiData[i].content}</p>
+                                        <button class='delete' value='${apiData[i].created}'>Delete</button></div>`)
                 }
             });
+    });
+}
+
+function updateItems(){
+    $('.blogEdit').on('click', function(event){
+        event.preventDefault()
+        let blogId = $('.blogID').val();
+        let blogContent = $('.blogPost').val() || apiData.content;
+        let authorName = $('.authorName').val() || apiData.author;
+        let blogTitle = $('.titleName').val() || apiData.title;
+        let authorNameSplit = authorName.split(' ')
+        console.log(authorNameSplit)
+        console.log(blogContent)
+        console.log(blogTitle)
+        console.log(blogId)
+        $.ajax({
+            url: `http://localhost:8080/posts/id/${blogId}`,
+            type: 'PUT',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                    created: blogId,
+                    title: blogTitle,
+                    content: blogContent,
+                    author: { firstName: authorNameSplit[0], lastName: authorNameSplit[1] }
+                })
+        })
+        .done((item) => {
+            console.log(item)
+        });
     });
 }
 
@@ -78,3 +110,4 @@ function addItems() {
 addItems()
 getItems()
 deleteItems()
+updateItems()

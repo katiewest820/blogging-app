@@ -63,7 +63,7 @@ function closeServer(){
 }
 
 if(require.main === module) {
-	runServer().catch(err => console.log(err));
+	runServer().catch(err => console.log(`internal server error: ${err}`).status(500));
 };
 
 module.exports = { app, runServer, closeServer };

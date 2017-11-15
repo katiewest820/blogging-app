@@ -22,9 +22,9 @@ router.get('/:id', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-    if (!(req.params.id && req.body.id && req.params.id == req.body.id)) {
-        return res.send(`your request ID :${req.body.id} must match the blog ID :${req.body.id}`)
-    }
+    //if (!(req.params.id && req.body.id && req.params.id == req.body.id)) {
+      //  return res.send(`your request ID :${req.params.id} must match the blog ID :${req.body.id}`)
+    //}
     let editOptions = ['title', 'content', 'author'];
     let editField = {}
 
