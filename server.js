@@ -15,7 +15,12 @@ mongoose.Promise = Promise;
 
 app.use(bodyParser.json());
 
-app.all('/');
+app.use(express.static('./blog-app-frontend'))
+
+app.get('/', (req, res) => {
+    res.sendFile(_dirname + './blog-app-frontend/index.html');
+});
+
 app.use('/posts', blogRoutes);
 app.use('/posts/id', blogRoutesId);
 

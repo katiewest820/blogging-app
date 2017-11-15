@@ -2,6 +2,14 @@ const express = require('express')
 const blogEntry = require('../models')
 const router = express.Router();
 
+// router.use(function(req, res, next) { console.log("route middleware");
+//     res.setHeader('Access-Control-Allow-Origin', '*');
+//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+//     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+//     res.setHeader('Access-Control-Allow-Credentials', true);
+//     next(); 
+// });
+
 router.get('/', (req, res) => {
     console.log('this is a get request')
     blogEntry.find({}).then((items) => {
@@ -20,8 +28,10 @@ router.post('/', (req, res) => {
     for (let i = 0; i < requiredFields.length; i++) {
         let field = requiredFields[i];
         if (!(field in req.body)) {
+
             return res.send(`you are missing ${field}`).status(400);
         }
+        console.log(req)
     }
     blogEntry
         .create({

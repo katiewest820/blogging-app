@@ -1,0 +1,14 @@
+body{
+	height:1000px;
+	width:1000px;
+	background-color: blue;
+}
+
+div{
+	border: solid 1px black;
+	margin: 10px;
+}
+
+.addNew, .blogItem{
+	display:none;
+}
