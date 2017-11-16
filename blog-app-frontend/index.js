@@ -2,8 +2,8 @@ console.log('I\'m working!!!!')
 
 let apiData;
 
-let url = window.location.href;
-console.log(url)
+let myURL = window.location.href;
+console.log(myURL)
 
 function getItems() {
 
@@ -19,7 +19,7 @@ function getItems() {
         $('.blogItem').fadeIn();
         //$('.start').fadeOut();
         $.ajax({
-                url: `http://localhost:8080/posts${blogId}`,
+                url: `${myURL}posts/${blogId}`,
                 type: 'GET'
             })
             .done((items) => {
@@ -46,7 +46,7 @@ function updateItems(){
         console.log(blogTitle)
         console.log(blogId)
         $.ajax({
-            url: `http://localhost:8080/posts/id/${blogId}`,
+            url: `${myURL}posts/id/${blogId}`,
             type: 'PUT',
             contentType: 'application/json',
             data: JSON.stringify({
@@ -69,7 +69,7 @@ function deleteItems() {
         let myId = $('.delete').val()
         console.log(myId + 'hello')
         $.ajax({
-                url: `http://localhost:8080/posts/id/${myId}`,
+                url: `${myURL}posts/id/${myId}`,
                 type: 'DELETE'
             })
             .done((item) => {
@@ -92,7 +92,7 @@ function addItems() {
         console.log(blogContent)
         console.log(blogTitle)
         $.ajax({
-                url: 'http://localhost:8080/posts',
+                url: `${myURL}posts`,
                 type: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify({
