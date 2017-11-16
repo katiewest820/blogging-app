@@ -33,6 +33,23 @@ function getItems() {
     });
 }
 
+function displayBloggingFields(){
+    $('.newBlogPostButton').on('click', function(){
+        $('.newInput').css('display', 'block').addClass('animated slideInDown');
+        $('.newBlogPostButton').fadeOut();
+        $('.start').fadeOut();
+        $('.blogItem').fadeOut();
+
+    });
+}
+
+function displayNewBlogPost(){
+        $('.newInput').fadeOut(400);
+        $('.newBlogPostButton').fadeIn(400);
+        $('.start').fadeIn(400);
+        $('.blogItem').fadeIn(500)
+}
+
 function updateItems(){
     $('.blogEdit').on('click', function(event){
         event.preventDefault()
@@ -83,6 +100,8 @@ function deleteItems() {
 
 function addItems() {
     $('.submitBlog').on('click', function(event) {
+        displayNewBlogPost();
+
         event.preventDefault()
         let blogContent = $('.blogPost').val()
         let authorName = $('.authorName').val()
@@ -103,7 +122,7 @@ function addItems() {
             })
             .done((item) => {
                 console.log(item)
-                $('.blogItem').append(`<div>${item.author}: <h2>${item.title}</h2><p>${item.content}</p>
+                $('.blogItem').prepend(`<div>${item.author}: <h2>${item.title}</h2><p>${item.content}</p>
                                         <button class='delete' value='${item.created}'>Delete</button></div>`)
             })
     })
@@ -114,3 +133,4 @@ addItems()
 getItems()
 deleteItems()
 updateItems()
+displayBloggingFields()

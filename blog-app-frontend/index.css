@@ -1,12 +1,45 @@
 body{
+	position: relative;
 	height:1000px;
 	width:1000px;
-	background-color: blue;
+	
 }
 
-div{
-	border: solid 1px black;
-	margin: 10px;
+.start{
+	text-align: center;
+}
+
+.addNew{
+	margin:auto;
+	text-align: center;
+	width:50%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+
+}
+
+
+.addNew input{
+	margin:10px;
+}
+
+.addNew label{
+	display:block;
+
+}
+
+.newInput{
+	display:none;
+	animation-duration: 4s;
+
+}
+
+.blogPost{
+	height:600px;
+	width: 80%;
+}
+.blogItem div{
+	border:solid 1px black;
 }
 
 .addNew, .blogItem{
