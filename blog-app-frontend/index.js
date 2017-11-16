@@ -2,6 +2,9 @@ console.log('I\'m working!!!!')
 
 let apiData;
 
+let url = window.location.href;
+console.log(url)
+
 function getItems() {
 
     $('.blogSearch').on('click', function(event) {
