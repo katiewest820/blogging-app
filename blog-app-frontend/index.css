@@ -1,7 +1,7 @@
 body{
 	position: relative;
 	height:1000px;
-	width:1000px;
+	width:100%;
 	
 }
 
@@ -18,9 +18,19 @@ body{
 
 }
 
+.submitBlog{
+	visibility: hidden;
+}
 
-.addNew input{
+.submitChanges{
+	visibility: hidden;
+}
+
+
+.addNew textarea{
 	margin:10px;
+	width: 400px;
+	overflow: hidden;
 }
 
 .addNew label{
@@ -37,6 +47,8 @@ body{
 .blogPost{
 	height:600px;
 	width: 80%;
+	margin: 20px;
+
 }
 .blogItem div{
 	border:solid 1px black;
