@@ -8,7 +8,7 @@ const Promise = require('bluebird');
 const app = express();
 
 const { PORT, DATABASE_URL } = require('./config');
-const {blogEntry} = require('./models');
+//const {blogEntry} = require('./models');
 const blogRoutes = require('./routes/blogEntryRoutes');
 const blogRoutesId = require('./routes/blogEntryRoutesId');
 mongoose.Promise = Promise;
