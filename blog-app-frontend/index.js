@@ -2,7 +2,7 @@ console.log('I\'m working!!!!')
 
 let apiData;
 let blogId;
-let myURL = window.location.href;
+let myURL = window.location.href.split('#')[0];
 console.log(myURL)
 
 function getItems() {
@@ -104,7 +104,7 @@ function updateItems() {
         let blogContent = $('.blogPost').val();
         let authorName = $('.authorName').val();
         let blogTitle = $('.titleName').val();
-        let authorNameSplit = authorName.split(' ')
+        let authorNameSplit = authorName.trim().split(' ')
         console.log(authorNameSplit)
         console.log(blogContent)
         console.log(blogTitle)
@@ -161,7 +161,7 @@ function addItems() {
         let blogContent = $('.blogPost').val()
         let authorName = $('.authorName').val()
         let blogTitle = $('.titleName').val()
-        let authorNameSplit = authorName.split(' ')
+        let authorNameSplit = authorName.trim().split(' ')
         console.log(authorNameSplit)
         console.log(blogContent)
         console.log(blogTitle)
