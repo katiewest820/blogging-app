@@ -5,7 +5,6 @@ let blogId;
 let myURL = window.location.href;
 console.log(myURL)
 
-
 function getItems() {
 
     $('.blogSearch').on('click', function(event) {
@@ -34,6 +33,7 @@ function apiGetReq(){
                 console.log(items)
                 apiData = items
                 for (let i = 0; i < apiData.length; i++) {
+                    //blogSelection = apiData[i]
                     $('.blogItem').append(`<div class="apiInput"><h3 class='author'>${apiData[i].author}</h3> <h2 class='title'>${apiData[i].title}</h2><p class='content'>${apiData[i].content}</p>
                                         <button class='delete' value='${apiData[i].created}'>Delete</button>
                                         <button class='blogEdit' value='${apiData[i].created}'>Blog Edit</button></div>`)
@@ -82,6 +82,11 @@ function displayEditBloggingFields() {
 
 function displayNewBlogPost() {
     apiGetReq();
+    
+    //$('.titleName').val(' ');
+    //$('.authorName').val(' ');
+    //$('.blogPost').val(' ');
+
     $('.submitBlog').css('visibility', 'hidden');
     $('.submitChanges').css('visibility', 'hidden');
     $('.newInput').fadeOut(400);
@@ -91,8 +96,10 @@ function displayNewBlogPost() {
 }
 
 function updateItems() {
+
     $('.submitChanges').on('click', function() {
         event.preventDefault()
+
         let blogId = $('.blogEdit').val();
         let blogContent = $('.blogPost').val();
         let authorName = $('.authorName').val();
@@ -114,6 +121,8 @@ function updateItems() {
                 })
             })
             .done((item) => {
+               //$('.blogItem').empty();
+                //apiGetReq()
                 displayNewBlogPost()
                 console.log(item)
             });
@@ -135,19 +144,24 @@ function deleteItems() {
                 console.log(item)
                 console.log(myId)
                  apiGetReq()
-            });
-    });
-};
+            })
+        
+           
+        //$(this).parent().remove()
+
+
+    })
+}
 
 function addItems() {
     $('.submitBlog').on('click', function(event) {
-        //displayNewBlogPost();
+        displayNewBlogPost();
+
         event.preventDefault()
         let blogContent = $('.blogPost').val()
         let authorName = $('.authorName').val()
         let blogTitle = $('.titleName').val()
-        let authorNameSplit = authorName.trim().split(' ')
-        //let authorNameSplitTrim = authorNameSplit.trim()
+        let authorNameSplit = authorName.split(' ')
         console.log(authorNameSplit)
         console.log(blogContent)
         console.log(blogTitle)
@@ -163,10 +177,8 @@ function addItems() {
             })
             .done((item) => {
                 console.log(item)
-                displayNewBlogPost();
-                //$('.blogItem').prepend(`<div>${item.author}: <h2>${item.title}</h2><p>${item.content}</p>
-                                        //<button class='delete' value='${item.created}'>Delete</button>
-                                        //<button class=></button></div>`)
+                $('.blogItem').prepend(`<div>${item.author}: <h2>${item.title}</h2><p>${item.content}</p>
+                                        <button class='delete' value='${item.created}'>Delete</button></div>`)
             })
     })
 }
